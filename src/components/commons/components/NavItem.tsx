@@ -23,9 +23,9 @@ function NavItem({ children, title }: Props) {
 		}
 	}, [])
 	return (
-		<li onClick={() => setOpen((prev) => !prev)} ref={menuRef} className="flex">
+		<li onClick={() => setOpen((prev) => !prev)} ref={menuRef} className="">
 			<span className="flex  items-center gap-x-2 hover:text-almostBlack">
-				<button >{title}</button>
+				<button className="text-xl">{title}</button>
 				<img
 					src={open ? "icon-arrow-up.svg" : "icon-arrow-down.svg"}
 					alt="arrow icon"
