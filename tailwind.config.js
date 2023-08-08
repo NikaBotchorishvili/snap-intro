@@ -10,7 +10,11 @@ export default {
 		fontFamily: {
 			epilogue: "'Epilogue', sans-serif",
 		},
-		extend: {},
+		extend: {
+			screens: {
+				md: "850px"
+			}
+		},
 	},
 	plugins: [],
 };

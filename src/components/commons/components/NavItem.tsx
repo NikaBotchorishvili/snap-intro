@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState, MouseEvent, useRef } from "react";
 
 type Props = {
 	children?: ReactNode;
@@ -6,12 +6,33 @@ type Props = {
 };
 
 function NavItem({ children, title }: Props) {
-    const [open, setOpen] = useState(false);
+	const [open, setOpen] = useState(false);
+	const menuRef = useRef(null);
+	useEffect(() => {
+		const menu = menuRef.current
+		const handler = ((e) => {
+			if(menu){
+				if(!menu.contains(e.target)){
+					setOpen(false);
+				}
+			}
+		})	
+		document.addEventListener("click", handler)
+		return () => {
+			document.removeEventListener("click", handler)
+		}
+	}, [])
 	return (
-		<li className="hover:text-almostBlack">
-			<button onClick={() => setOpen(prev => !prev)}>{title}</button>
+		<li onClick={() => setOpen((prev) => !prev)} ref={menuRef} className="flex">
+			<span className="flex  items-center gap-x-2 hover:text-almostBlack">
+				<button >{title}</button>
+				<img
+					src={open ? "icon-arrow-up.svg" : "icon-arrow-down.svg"}
+					alt="arrow icon"
+				/>
 
-            {open && children}
+			</span>
+			{open && children}
 		</li>
 	);
 }
