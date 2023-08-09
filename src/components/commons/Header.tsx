@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import DropDown from "./components/DropDown/Dropdown";
 import DropDownItem from "./components/DropDown/DropdownItem";
+import DropdownNavItem from "./components/DropDown/DropdownNavItem";
 import NavItem from "./components/DropDown/NavItem";
 import Overlay from "./components/Overlay/Overlay";
 import { motion, AnimatePresence } from "framer-motion";
@@ -30,7 +31,7 @@ function Header() {
 				{toggled && <Overlay onClick={handleClose} toggled={toggled} />}
 			</AnimatePresence>
 			<header className="flex justify-between mt-5 items-center w-screen">
-				<div className="flex justify-between items-center mx-10 gap-x-16 text-mediumGray w-full ">
+				<div className="flex justify-between items-center mx-10 gap-x-16 text-mediumGray w-full md:static fixed top-5">
 					<img src="logo.svg" alt="" />
 
 					<motion.nav
@@ -39,9 +40,9 @@ function Header() {
 						className={` md:justify-between md:w-full w-[250px] md:flex fixed md:static md:flex-row flex-col top-0 md:h-fit h-screen z-10 md:bg-opacity-0 bg-almostWhite gap-y-6 justify-start -right-[500px] `}
 					>
 						<ul className="flex md:flex-row flex-col md:gap-x-8 mt-28 md:mt-0 gap-y-2 md:static ml-5 ">
-							
-							<NavItem title="Features">
-								<DropDown translate="-translate-x-1/2">
+
+							<DropdownNavItem title="Features">
+								<DropDown translate="md:-translate-x-1/4">
 									<DropDownItem
 										title="Todo List"
 										icon="icon-todo.svg"
@@ -59,18 +60,18 @@ function Header() {
 										icon="icon-planning.svg"
 									/>
 								</DropDown>
-							</NavItem>
-							<NavItem title="Company">
-								<DropDown>
+							</DropdownNavItem>
+							<DropdownNavItem title="Company">
+								<DropDown translate="md:translate-x-1/4">
 									<DropDownItem title="History" />
 									<DropDownItem title="Our Team" />
 									<DropDownItem title="Blog" />
 								</DropDown>
-							</NavItem>
+							</DropdownNavItem>
 							<NavItem title="Careers" />
 							<NavItem title="About" />
 						</ul>
-						<div className="flex md:flex-row flex-col md:gap-x-8 text-mediumGray md:items-center items-center gap-y-4">
+						<div className="flex md:flex-row flex-col md:gap-x-8 md:mt-0 mt-7 text-mediumGray md:items-center items-center gap-y-4">
 							<a className="hover:text-almostBlack" href="#">
 								Login
 							</a>
@@ -89,7 +90,7 @@ function Header() {
 						<motion.img
 							whileHover={{ scale: 1.1 }}
 							whileTap={{ scale: 0.9 }}
-							className="fixed right-5"
+							className="fixed right-5 top-5"
 							src={`${
 								toggled
 									? "icon-close-menu.svg"
