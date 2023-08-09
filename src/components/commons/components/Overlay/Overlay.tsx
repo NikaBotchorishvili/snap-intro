@@ -5,7 +5,7 @@ type Props = {
 	onClick: () => void;
 };
 
-function Overlay({ toggled, onClick }: Props) {
+function Overlay({ onClick }: Props) {
 	return (
 		<>
 			<motion.div
